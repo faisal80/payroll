@@ -17,6 +17,8 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'allowance_adj_id')->dropDownList(app\models\AllowanceAdj::getAll()) ?>
 
     <?= $form->field($model, 'amount')->textInput() ?>
+    
+    <?= $form->field($model, 'notes')->textInput() ?>
 
     <?= $form->field($model, 'start_date')->textInput() ?>
 

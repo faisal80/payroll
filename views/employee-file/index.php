@@ -5,6 +5,11 @@ use yii\widgets\DetailView;
 use yii\grid\GridView;
 
 /* @var $this yii\web\View */
+/* @var $employee app\models\Employee */
+
+$this->title = Yii::t('app', 'Employee File');
+$this->params['breadcrumbs'][] = $this->title;
+
 ?>
 <h1>Employee's File</h1>
 
@@ -87,6 +92,25 @@ echo Tabs::widget([
 
                     'designation.title',
                     'bps.bps',
+                    'start_date',
+                    'end_date',
+
+                    ['class' => 'yii\grid\ActionColumn'],
+                ],
+            ]),
+        ],
+        [
+            'label' => 'Payment Methods',
+            'content' => GridView::widget([
+                'dataProvider' => $payment_methods,
+                'columns' => [
+                    ['class' => 'yii\grid\SerialColumn'],
+
+                    'id',
+                    'employee.employee_name',
+                    'through',
+                    'bank',
+                    'account_number',
                     'start_date',
                     'end_date',
 

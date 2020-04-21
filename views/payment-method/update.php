@@ -4,6 +4,8 @@ use yii\helpers\Html;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\PaymentMethod */
+/* @var $methods_list yii\db\ActiveQuery */
+/* @var $banks yii\db\ActiveQuery */
 
 $this->title = Yii::t('app', 'Update Payment Method: {name}', [
     'name' => $model->id,
@@ -18,6 +20,8 @@ $this->params['breadcrumbs'][] = Yii::t('app', 'Update');
 
     <?= $this->render('_form', [
         'model' => $model,
+        'methods_list' => $methods_list,
+        'banks' => $banks,
     ]) ?>
 
 </div>

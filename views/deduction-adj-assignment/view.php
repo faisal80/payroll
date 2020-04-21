@@ -34,6 +34,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'employee.employee_name',
             'deductionAdj.description',
             'amount:decimal',
+            'notes',
             'start_date',
             'end_date',
             'created_by',

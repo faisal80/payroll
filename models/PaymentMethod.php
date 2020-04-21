@@ -64,4 +64,12 @@ class PaymentMethod extends \app\models\MyActiveRecord
     public function getEmployee() {
         return $this->hasOne(Employee::className(),['id'=>'employee_id']);
     }
+    
+    public function getMethodsList() {
+        return PaymentMethod::findBySql('SELECT DISTINCT through FROM payment_method ORDER BY through')->all();
+    }
+    
+    public function getBanksList() {
+        return PaymentMethod::findBySql('SELECT DISTINCT bank FROM payment_method ORDER BY bank')->all();
+    }
 }

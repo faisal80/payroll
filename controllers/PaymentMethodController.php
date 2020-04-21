@@ -65,6 +65,9 @@ class PaymentMethodController extends Controller
     public function actionCreate()
     {
         $model = new PaymentMethod();
+        
+        $methods_list = PaymentMethod::getMethodsList();
+        $banks = PaymentMethod::getBanksList();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -72,6 +75,8 @@ class PaymentMethodController extends Controller
 
         return $this->render('create', [
             'model' => $model,
+            'methods_list' => $methods_list,
+            'banks' => $banks,
         ]);
     }
 
@@ -85,6 +90,9 @@ class PaymentMethodController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        
+        $methods_list = PaymentMethod::getMethodsList();
+        $banks = PaymentMethod::getBanksList();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -92,6 +100,8 @@ class PaymentMethodController extends Controller
 
         return $this->render('update', [
             'model' => $model,
+            'methods_list' => $methods_list,
+            'banks' => $banks,
         ]);
     }
 

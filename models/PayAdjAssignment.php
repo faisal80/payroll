@@ -13,6 +13,7 @@ use Yii;
  * @property int|null $amount
  * @property string|null $start_date
  * @property string|null $end_date
+ * @property string|null $notes Description of the adjustment
  * @property int|null $created_by
  * @property int|null $created_at
  * @property int|null $updated_by
@@ -35,7 +36,7 @@ class PayAdjAssignment extends \app\models\MyActiveRecord
     {
         return [
             [['employee_id', 'pay_adj_id', 'amount', 'created_by', 'created_at', 'updated_by', 'updated_at'], 'integer'],
-            [['start_date', 'end_date'], 'safe'],
+            [['start_date', 'end_date', 'notes'], 'safe'],
         ];
     }
 
@@ -51,6 +52,7 @@ class PayAdjAssignment extends \app\models\MyActiveRecord
             'amount' => 'Amount',
             'start_date' => 'Start Date',
             'end_date' => 'End Date',
+            'notes' => 'Notes',
             'created_by' => 'Created By',
             'created_at' => 'Created At',
             'updated_by' => 'Updated By',

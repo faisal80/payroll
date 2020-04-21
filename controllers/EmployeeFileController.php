@@ -9,10 +9,31 @@ use app\models\EmployeeFile;
 //use app\models\AllowanceAssignment;
 use yii\data\ActiveDataProvider;
 use yii\data\ArrayDataProvider;
+use yii\filters\AccessControl;
 
 
 class EmployeeFileController extends \yii\web\Controller
 {
+    
+    /**
+     * {@inheritdoc}
+     */
+    public function behaviors()
+    {
+        return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'actions' => [],
+                        'roles' => ['@'],
+                    ],
+                ],
+            ],
+        ];
+    }
+    
     public function actionIndex()
     {
         $employee_file = new EmployeeFile();
@@ -21,6 +42,7 @@ class EmployeeFileController extends \yii\web\Controller
         $pays = new ArrayDataProvider();
         $allowances = new ArrayDataProvider();
         $deductions = new ArrayDataProvider();
+        $payment_methods = new ArrayDataProvider();
         
         if ($employee_file->load(Yii::$app->request->post())) {
             $employee = Employee::findOne($employee_file->employee_id);
@@ -28,6 +50,7 @@ class EmployeeFileController extends \yii\web\Controller
             $pays = new ActiveDataProvider(['query'=> $employee->getPays()]);
             $allowances = new ActiveDataProvider(['query'=> $employee->getAllowances()]);
             $deductions = new ActiveDataProvider(['query'=> $employee->getDeductions()]);
+            $payment_methods = new ActiveDataProvider(['query'=> $employee->getPaymentMethods()]);
         }
         
         return $this->render('index', [
@@ -37,6 +60,7 @@ class EmployeeFileController extends \yii\web\Controller
             'pays' => $pays,
             'allowances' => $allowances,
             'deductions' => $deductions,
+            'payment_methods' => $payment_methods,
         ]);
     }
 
