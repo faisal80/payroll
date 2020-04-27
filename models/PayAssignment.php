@@ -65,5 +65,5 @@ class PayAssignment extends \app\models\MyActiveRecord
     public function getPay() {
         return $this->hasOne(Pay::className(),['id'=>'pay_id']);
     }
-
+    
 }

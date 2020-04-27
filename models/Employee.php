@@ -106,4 +106,87 @@ class Employee extends \app\models\MyActiveRecord
         return $this->hasMany(PaymentMethod::className(), ['employee_id' => 'id']);
     }
     
+    public function getCurrentPay($pay_id, $start_date, $end_date) {
+        return $this->hasOne(PayAssignment::className(), ['employee_id'=>'id'])
+                ->where('pay_id = :p_id', [':p_id' => $pay_id])
+                ->andWhere('start_date >= :sdate', [':sdate' => $start_date])
+                ->andWhere('end_date <= :edate', [':edate' => $end_date]);
+    }
+
+    public function getCurrentPays($start_date, $end_date) {
+        return $this->hasMany(PayAssignment::className(), ['employee_id' => 'id'])
+                ->andWhere('start_date >= :sdate', [':sdate' => $start_date])
+                ->andWhere('end_date <= :edate', [':edate' => $end_date])
+                ->orderBy('pay_id');
+    }    
+    
+    public function getCurrentPayAdj($pay_id, $start_date, $end_date) {
+        return $this->hasOne(PayAdjAssignment::className(), ['employee_id'=>'id'])
+                ->where('pay_id = :p_id', [':p_id' => $pay_id])
+                ->andWhere('start_date >= :sdate', [':sdate' => $start_date])
+                ->andWhere('end_date <= :edate', [':edate' => $end_date]);
+    }
+
+    public function getCurrentPayAdjs($start_date, $end_date) {
+        return $this->hasMany(PayAdjAssignment::className(), ['employee_id' => 'id'])
+                ->andWhere('start_date >= :sdate', [':sdate' => $start_date])
+                ->andWhere('end_date <= :edate', [':edate' => $end_date])
+                ->orderBy('pay_adj_id');
+    }    
+    
+    public function getCurrentAllowance($allowance_id, $start_date, $end_date) {
+        return $this->hasOne(AllowanceAssignment::className(), ['employee_id'=>'id'])
+                ->where('allowance_id = :a_id', [':a_id' => $allowance_id])
+                ->andWhere('start_date >= :sdate', [':sdate' => $start_date])
+                ->andWhere('end_date <= :edate', [':edate' => $end_date])
+                ->orderBy('allowance_id');
+    }
+
+    public function getCurrentAllowances($start_date, $end_date) {
+        return $this->hasMany(AllowanceAssignment::className(), ['employee_id' => 'id'])
+                ->andWhere('start_date >= :sdate', [':sdate' => $start_date])
+                ->andWhere('end_date <= :edate', [':edate' => $end_date]);
+    }
+    
+    public function getCurrentAllowanceAdj($allowance_id, $start_date, $end_date) {
+        return $this->hasOne(AllowanceAdjAssignment::className(), ['employee_id'=>'id'])
+                ->where('allowance_id = :a_id', [':a_id' => $allowance_id])
+                ->andWhere('start_date >= :sdate', [':sdate' => $start_date])
+                ->andWhere('end_date <= :edate', [':edate' => $end_date])
+                ->orderBy('allowance_adj_id');
+    }
+
+    public function getCurrentAllowanceAdjs($start_date, $end_date) {
+        return $this->hasMany(AllowanceAdjAssignment::className(), ['employee_id' => 'id'])
+                ->andWhere('start_date >= :sdate', [':sdate' => $start_date])
+                ->andWhere('end_date <= :edate', [':edate' => $end_date]);
+    }
+    
+    public function getCurrentDeduction($deduction_id, $start_date, $end_date) {
+        return $this->hasOne(DeductionAssignment::className(), ['employee_id'=>'id'])
+                ->where('deduction_id = :d_id', [':d_id' => $deduction_id])
+                ->andWhere('start_date >= :sdate', [':sdate' => $start_date])
+                ->andWhere('end_date <= :edate', [':edate' => $end_date])
+                ->orderBy('deduction_id');
+    }
+
+    public function getCurrentDeductions($start_date, $end_date) {
+        return $this->hasMany(DeductionAssignment::className(), ['employee_id' => 'id'])
+                ->andWhere('start_date >= :sdate', [':sdate' => $start_date])
+                ->andWhere('end_date <= :edate', [':edate' => $end_date]);
+    }
+    
+    public function getCurrentDeductionAdj($deduction_id, $start_date, $end_date) {
+        return $this->hasOne(DeductionAdjAssignment::className(), ['employee_id'=>'id'])
+                ->where('deduction_id = :d_id', [':d_id' => $deduction_id])
+                ->andWhere('start_date >= :sdate', [':sdate' => $start_date])
+                ->andWhere('end_date <= :edate', [':edate' => $end_date])
+                ->orderBy('deduction_adj_id');
+    }
+
+    public function getCurrentDeductionAdjs($start_date, $end_date) {
+        return $this->hasMany(DeductionAdjAssignment::className(), ['employee_id' => 'id'])
+                ->andWhere('start_date >= :sdate', [':sdate' => $start_date])
+                ->andWhere('end_date <= :edate', [':edate' => $end_date]);;
+    }
 }
