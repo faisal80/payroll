@@ -1,7 +1,9 @@
 <?php
 /* @var $this yii\web\View */
+
+$this->title = 'Payroll of ' . $employee->employee_name;
 ?>
-<h1>Payroll of <?= $employee->employee_name ?></h1>
+<h1> <?= $this->title ?></h1>
 
 <p>
     <?php
@@ -34,4 +36,5 @@
         echo 'Net Pay = ' . $net_pay;
         
     ?>
+
 </p>
