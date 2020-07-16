@@ -38,6 +38,7 @@ class EmployeeFileController extends \yii\web\Controller
     {
         $employee_file = new EmployeeFile();
         $employee = new Employee();
+        $actions = new ArrayDataProvider();
         $assignments = new ArrayDataProvider();
         $pays = new ArrayDataProvider();
         $allowances = new ArrayDataProvider();
@@ -46,6 +47,7 @@ class EmployeeFileController extends \yii\web\Controller
         
         if ($employee_file->load(Yii::$app->request->post())) {
             $employee = Employee::findOne($employee_file->employee_id);
+            $actions = new ActiveDataProvider(['query' => $employee->getActions()]);
             $assignments = new ActiveDataProvider(['query'=> $employee->getAssignments()]);
             $pays = new ActiveDataProvider(['query'=> $employee->getPays()]);
             $allowances = new ActiveDataProvider(['query'=> $employee->getAllowances()]);
@@ -56,6 +58,7 @@ class EmployeeFileController extends \yii\web\Controller
         return $this->render('index', [
             'model' => $employee_file,
             'employee' => $employee,
+            'actions' => $actions,
             'assignments' => $assignments,
             'pays' => $pays,
             'allowances' => $allowances,

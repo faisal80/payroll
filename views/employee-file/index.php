@@ -37,6 +37,24 @@ echo Tabs::widget([
             'active' => true
         ],
         [
+            'label' => 'Actions',
+            'content' => GridView::widget([
+                'dataProvider' => $actions,
+                'columns' => [
+                    ['class' => 'yii\grid\SerialColumn'],
+
+                    'id',
+                    'employee_id',
+                    'description',
+                    'status',
+                    'start_date',
+                    'end_date',
+
+                    ['class' => 'yii\grid\ActionColumn'],
+                ],
+            ]),
+        ],
+        [
             'label' => 'Pay',
             'content' => GridView::widget([
                 'dataProvider' => $pays,

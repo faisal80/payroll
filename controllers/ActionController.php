@@ -3,17 +3,16 @@
 namespace app\controllers;
 
 use Yii;
-use app\models\Bps;
-use app\models\BpsDetail;
+use app\models\Action;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * BpsController implements the CRUD actions for Bps model.
+ * ActionController implements the CRUD actions for Action model.
  */
-class BpsController extends Controller
+class ActionController extends Controller
 {
     /**
      * {@inheritdoc}
@@ -31,13 +30,13 @@ class BpsController extends Controller
     }
 
     /**
-     * Lists all Bps models.
+     * Lists all Action models.
      * @return mixed
      */
     public function actionIndex()
     {
         $dataProvider = new ActiveDataProvider([
-            'query' => Bps::find(),
+            'query' => Action::find(),
         ]);
 
         return $this->render('index', [
@@ -46,34 +45,26 @@ class BpsController extends Controller
     }
 
     /**
-     * Displays a single Bps model.
+     * Displays a single Action model.
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
     public function actionView($id)
     {
-        $dataProvider = new ActiveDataProvider([
-            'query' => BpsDetail::find()->where(['bps_id'=> $id]),
-            'pagination' => [
-                'pageSize' => 22,
-            ],
-        ]);
-
         return $this->render('view', [
             'model' => $this->findModel($id),
-            'bps_detail'=> $dataProvider,
         ]);
     }
 
     /**
-     * Creates a new Bps model.
+     * Creates a new Action model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Bps();
+        $model = new Action();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -85,7 +76,7 @@ class BpsController extends Controller
     }
 
     /**
-     * Updates an existing Bps model.
+     * Updates an existing Action model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -105,7 +96,7 @@ class BpsController extends Controller
     }
 
     /**
-     * Deletes an existing Bps model.
+     * Deletes an existing Action model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -119,15 +110,15 @@ class BpsController extends Controller
     }
 
     /**
-     * Finds the Bps model based on its primary key value.
+     * Finds the Action model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Bps the loaded model
+     * @return Action the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Bps::findOne($id)) !== null) {
+        if (($model = Action::findOne($id)) !== null) {
             return $model;
         }
 

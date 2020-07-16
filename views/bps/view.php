@@ -2,9 +2,12 @@
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;
+use yii\widgets\Pjax;
+use yii\grid\GridView;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Bps */
+/* @var $bps_detail app\models\BpsDetail */
 
 $this->title = $model->pay_scale;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Pay Scales'), 'url' => ['index']];
@@ -41,5 +44,29 @@ $this->params['breadcrumbs'][] = $this->title;
             'updated_at:datetime',
         ],
     ]) ?>
+
+<?php Pjax::begin(); ?>
+
+    <?= GridView::widget([
+        'dataProvider' => $bps_detail,
+        'columns' => [
+            ['class' => 'yii\grid\SerialColumn'],
+
+            'id',
+            'payScale.pay_scale',
+            'bps',
+            'minimum:decimal',
+            'increment:decimal',
+            'maximum:decimal',
+            //'created_by',
+            //'created_at',
+            //'updated_by',
+            //'updated_at',
+
+            ['class' => 'yii\grid\ActionColumn'],
+        ],
+    ]); ?>
+
+    <?php Pjax::end(); ?>
 
 </div>

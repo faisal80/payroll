@@ -86,6 +86,10 @@ class Employee extends \app\models\MyActiveRecord
         return \yii\helpers\ArrayHelper::map($result, 'id', 'employee_name');
     }
     
+    public function getActions() {
+        return $this->hasMany(Action::className(), ['employee_id' => 'id']);
+    }
+
     public function getPays() {
         return $this->hasMany(PayAssignment::className(), ['employee_id' => 'id']);
     }
