@@ -193,4 +193,10 @@ class Employee extends \app\models\MyActiveRecord
                 ->andWhere('end_date >= :edate', [':edate' => $end_date])
                 ->orderBy('deduction_adj_id');
     }
+
+    public function getCurrentPaymentMethod($start_date, $end_date) {
+        return $this->hasOne(PaymentMethod::className(), ['employee_id' => 'id'])
+                ->where('start_date <= :sdate', [':sdate' => $start_date])
+                ->andWhere('end_date >= :edate', [':edate' => $end_date]);
+    }
 }

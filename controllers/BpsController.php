@@ -67,6 +67,21 @@ class BpsController extends Controller
     }
 
     /**
+     * Displays Pay Scale Chart
+     * @param integer $id
+     * @return mixed Description
+     * @throws NotFoundHttpException if the model cannot be found
+     */
+    public function actionChart($id)
+    {
+        $model = $this->findModel($id);
+        
+        return $this->render('chart', [
+            'model' => $model,
+        ]);
+    }    
+    
+    /**
      * Creates a new Bps model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed

@@ -68,4 +68,15 @@ class Bps extends \app\models\MyActiveRecord
         $result = Bps::find()->all();
         return \yii\helpers\ArrayHelper::map($result, 'id', 'pay_scale');
     }
+
+    public function getPs()  {
+        return $this->wef . ' (' . $this->authority .')';
+    }
+    
+    /**
+     * return all children bpsDetail
+     */
+    public function getBpsDetail() {
+        return $this->hasMany(BpsDetail::className(), ['bps_id'=>'id']);
+    }    
 }

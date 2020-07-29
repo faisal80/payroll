@@ -27,6 +27,8 @@ $this->params['breadcrumbs'][] = $this->title;
                 'method' => 'post',
             ],
         ]) ?>
+        <?= Html::a(Yii::t('app', 'Create BPS Detail'), ['bps-detail/create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Chart', ['chart', 'id' => $model->id], ['class' => 'btn btn-info']) ?>
     </p>
 
     <?= DetailView::widget([
